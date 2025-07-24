@@ -137,7 +137,7 @@ function sendBoth(){
     // Send email via emailjs
     emailjs.send("service_ly1z5dg","template_banowuo",templateParams).then(
         () => {
-            alert("Email Sent !!");
+            alert("Email Sent !! kindly check your Mail");
         },
         () => {
             alert("Email Not Sent !! Kindly Check the given Details");
