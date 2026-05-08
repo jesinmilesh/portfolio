@@ -1,48 +1,48 @@
-$(document).ready(function(){
-    $(window).scroll(function(){
+$(document).ready(function () {
+    $(window).scroll(function () {
         // sticky navbar on scroll script
-        if(this.scrollY > 20){
+        if (this.scrollY > 20) {
             $('.navbar').addClass("sticky");
-        }else{
+        } else {
             $('.navbar').removeClass("sticky");
         }
-        
+
         // scroll-up button show/hide script
-        if(this.scrollY > 500){
+        if (this.scrollY > 500) {
             $('.scroll-up-btn').addClass("show");
-        }else{
+        } else {
             $('.scroll-up-btn').removeClass("show");
         }
     });
 
     // slide-up script
-    $('.scroll-up-btn').click(function(){
-        $('html').animate({scrollTop: 0});
+    $('.scroll-up-btn').click(function () {
+        $('html').animate({ scrollTop: 0 });
         // removing smooth scroll on slide-up button click
         $('html').css("scrollBehavior", "auto");
     });
 
-    $('.navbar .menu li a').click(function(){
+    $('.navbar .menu li a').click(function () {
         // applying again smooth scroll on menu items click
         $('html').css("scrollBehavior", "smooth");
     });
 
     // toggle menu/navbar script
-    $('.menu-btn').click(function(){
+    $('.menu-btn').click(function () {
         $('.navbar .menu').toggleClass("active");
         $('.menu-btn i').toggleClass("active");
     });
 
     // typing text animation script
     var typed = new Typed(".typing", {
-        strings: ["Software Engineer", "Python Developer", "Ethical Hacker ", "Starter"],
+        strings: ["Cyber Security Student", "Python Developer", "Web Developer"],
         typeSpeed: 100,
         backSpeed: 60,
         loop: true
     });
 
-    var typed = new Typed(".typing-2", {
-       strings: ["Software Engineer", "Python Developer", "Ethical Hacker ", "Starter"],
+    var typed2 = new Typed(".typing-2", {
+        strings: ["Cyber Security Student", "Python Developer", "Web Developer"],
         typeSpeed: 100,
         backSpeed: 60,
         loop: true
@@ -56,15 +56,15 @@ $(document).ready(function(){
         autoplayTimeout: 2000,
         autoplayHoverPause: true,
         responsive: {
-            0:{
+            0: {
                 items: 1,
                 nav: false
             },
-            600:{
+            600: {
                 items: 2,
                 nav: false
             },
-            1000:{
+            1000: {
                 items: 3,
                 nav: false
             }
@@ -80,84 +80,28 @@ function getUserResponse(promptMessage, callback) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('section.contact form');
-    if (form) {
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = new FormData(form);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
 
-            // Use fetch to send form data to the API endpoint
-            fetch(form.action, {
-                method: form.method,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (response.ok) {
-                    form.reset();
-                } else {
-                    alert('Failed to send message. Please try again later.');
-                }
-            })
-            .catch(error => {
-                alert('Error sending message: ' + error.message);
-            });
-        });
-    }
-});
-function sendEmail(){
-    const templateParams={
-        name: document.querySelector("#name").value,
-        email: document.querySelector("#email").value,
-        subject: document.querySelector("#subject").value,
-        message: document.querySelector("#message").value
-    };
+function sendEmail() {
+    const name = document.querySelector("#name").value;
+    const email = document.querySelector("#email").value;
+    const subject = document.querySelector("#subject").value;
+    const message = document.querySelector("#message").value;
 
-    emailjs.send("service_ly1z5dg","template_banowuo",templateParams).then(
-        ()=> alert("Email Sent!!").catch(()=>alert("Email Not Sent!!"))
-    );
-}
-
-function sendBoth(){
-    const form = document.querySelector('#contact-form');
-    const templateParams={
-        name: document.querySelector("#name").value,
-        email: document.querySelector("#email").value,
-        subject: document.querySelector("#subject").value,
-        message: document.querySelector("#message").value
-    };
-
-    // Send email via emailjs
-    emailjs.send("service_ly1z5dg","template_banowuo",templateParams).then(
-        () => {
-            alert("Email Sent !! kindly check your Mail");
-        },
-        () => {
-            alert("Email Not Sent !! Kindly Check the given Details");
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username: "jesintechnologies@gmail.com",
+        Password: "dughwoircwixhqhb",
+        To: email,
+        From: "jesintechnologies@gmail.com",
+        Subject: subject,
+        Body: "<div style='text-align: left;'><img src='https://raw.githubusercontent.com/jesinmilesh/portfolio/main/images/Jeisn%20Tech%20Logo.png' alt='Jesin Tech Logo' width='200'></div><br>Hello " + name + ",<br><br>Welcome and thank you for reaching out to Jesin Technologies! We have received your message and will contact you within 2 to 3 working days.<br><br><b>Your Message:</b><br>" + message + "<br><br>Have a good day!<br><br><i>\"Once your mind stretches to a new level it never goes back to its original dimension.\" <br>– Dr. A.P.J. Abdul Kalam</i>"
+    }).then(
+        msg => {
+            if (msg === "OK") {
+                alert("Email Sent!!");
+            } else {
+                alert("Email Not Sent!! " + msg);
+            }
         }
     );
-
-    // Prepare data for web3forms
-    const formData = new FormData(form);
-    const data = {};
-    formData.forEach((value, key) => {
-        data[key] = value;
-    });
-
-    // Send form data to web3forms API
-    fetch(form.action, {
-        method: form.method,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-       
 }

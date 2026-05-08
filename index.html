@@ -11,16 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-    </script>
-    <script type="text/javascript">
-    (function(){
-        emailjs.init({
-            publicKey: "T2o3gZiJ9_djpbss8",
-        });
-    })();
-    </script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
 </head>
 <body>
@@ -125,7 +116,7 @@
                     <div class="bars">
                         <div class="info">
                             <span>JAVA</span>
-                            <span>90%</span>
+                            <span>50%</span>
                         </div>
                         <div class="line html"></div>
                     </div>
@@ -262,7 +253,6 @@
                 <div class="column right">
                     <div class="text">Message me</div>
 <form id="contact-form" action="javascript:void(0);" method="POST">
-    <input type="hidden" name="access_key" value="b0d05aee-e867-4b2e-b436-474d50b5f7b4" />
                         <div class="fields">
                             <div class="field name">
                                 <input type="text" id="name" placeholder="Name" name="Name">
@@ -278,7 +268,7 @@
                             <textarea id="message" cols="30" rows="10" placeholder="Message.." name="Message" required></textarea>
                         </div>
                         <div class="button-area">
-                            <button type="button" onclick="sendBoth()">Send message</button>
+                            <button type="button" onclick="sendEmail()">Send message</button>
                         </div>
                     </form>
                 </div>
