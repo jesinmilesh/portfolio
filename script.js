@@ -72,36 +72,103 @@ $(document).ready(function () {
     });
 });
 
-// Function to get user response via prompt and callback
-function getUserResponse(promptMessage, callback) {
-    const response = window.prompt(promptMessage);
-    if (callback && typeof callback === 'function') {
-        callback(response);
-    }
+// Function to sanitize HTML input to prevent XSS/Injection in email body
+function sanitizeHTML(str) {
+    var temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
 }
 
-
 function sendEmail() {
-    const name = document.querySelector("#name").value;
-    const email = document.querySelector("#email").value;
-    const subject = document.querySelector("#subject").value;
-    const message = document.querySelector("#message").value;
+    if (typeof Email === 'undefined') {
+        alert("Email service (SMTP.js) is not loaded. Please check your internet connection or disable ad blockers.");
+        return;
+    }
 
+    const button = document.querySelector(".button-area button");
+    button.disabled = true;
+    button.innerText = "Sending...";
+
+    const rawName    = document.querySelector("#name").value;
+    const rawEmail   = document.querySelector("#email").value;
+    const rawSubject = document.querySelector("#subject").value;
+    const rawMessage = document.querySelector("#message").value;
+
+    // Sanitize inputs to prevent malicious HTML/scripts
+    const name    = sanitizeHTML(rawName);
+    const email   = sanitizeHTML(rawEmail);
+    const subject = sanitizeHTML(rawSubject);
+    const message = sanitizeHTML(rawMessage);
+
+    const LOGO = "<img src='https://raw.githubusercontent.com/jesinmilesh/portfolio/main/images/Jeisn%20Tech%20Logo.png' alt='Jesin Tech Logo' width='200'>";
+
+    // 1. Confirmation email → sent to the user
     Email.send({
         Host: "smtp.gmail.com",
         Username: "jesintechnologies@gmail.com",
         Password: "dughwoircwixhqhb",
         To: email,
         From: "jesintechnologies@gmail.com",
-        Subject: subject,
-        Body: "<div style='text-align: left;'><img src='https://raw.githubusercontent.com/jesinmilesh/portfolio/main/images/Jeisn%20Tech%20Logo.png' alt='Jesin Tech Logo' width='200'></div><br>Hello " + name + ",<br><br>Welcome and thank you for reaching out to Jesin Technologies! We have received your message and will contact you within 2 to 3 working days.<br><br><b>Your Message:</b><br>" + message + "<br><br>Have a good day!<br><br><i>\"Once your mind stretches to a new level it never goes back to its original dimension.\" <br>– Dr. A.P.J. Abdul Kalam</i>"
-    }).then(
-        msg => {
-            if (msg === "OK") {
-                alert("Email Sent!!");
-            } else {
-                alert("Email Not Sent!! " + msg);
-            }
+        Subject: "We received your message – " + subject,
+        Body: "<div style='text-align:left;font-family:sans-serif;'>" +
+              LOGO + "<br><br>" +
+              "Hello <b>" + name + "</b>,<br><br>" +
+              "Welcome and thank you for reaching out to Jesin Technologies! We have received your message and will contact you within 2 to 3 working days.<br><br>" +
+              "<b>Your Message:</b><br>" + message + "<br><br>" +
+              "Have a good day!<br><br>" +
+              "<i>\"Once your mind stretches to a new level it never goes back to its original dimension.\"<br>– Dr. A.P.J. Abdul Kalam</i></div>"
+    }).then(msg => {
+
+        // 2. Notification email → sent to you with all form details
+        Email.send({
+            Host: "smtp.gmail.com",
+            Username: "jesintechnologies@gmail.com",
+            Password: "dughwoircwixhqhb",
+            To: "jesintechnologies@gmail.com",
+            From: "jesintechnologies@gmail.com",
+            Subject: "📩 New Contact Form Submission – " + subject,
+            Body: "<div style='font-family:sans-serif;text-align:left;'>" +
+                  LOGO + "<br><br>" +
+                  "<h2 style='color:#dc143c;'>New Message Received</h2>" +
+                  "<hr style='border:1px solid #ddd;'><br>" +
+                  "<b>👤 Name:</b> " + name + "<br><br>" +
+                  "<b>📧 Email:</b> " + email + "<br><br>" +
+                  "<b>📌 Subject:</b> " + subject + "<br><br>" +
+                  "<b>💬 Message:</b><br>" + message + "<br><br>" +
+                  "<hr style='border:1px solid #ddd;'>" +
+                  "<small style='color:#999;'>Sent via your Portfolio contact form.</small></div>"
+        }).then(() => {});
+
+        // Show success/failure modal
+        const modal = document.getElementById("email-modal");
+        const icon  = document.getElementById("modal-icon");
+        const title = document.getElementById("modal-title");
+        const text  = document.getElementById("modal-message");
+
+        if (msg === "OK") {
+            icon.className  = "fas fa-check-circle success";
+            title.innerText = "Email Sent!";
+            text.innerText = "Thank you! Your message has been sent successfully.";
+            document.getElementById("contact-form").reset();
+        } else {
+            icon.className  = "fas fa-times-circle error";
+            title.innerText = "Not Sent";
+            text.innerText = "Oops! Something went wrong. Please try again.";
         }
-    );
+        modal.classList.add("show");
+
+        // Enable button again
+        button.disabled = false;
+        button.innerText = "Send message";
+    });
 }
+
+function closeModal() {
+    document.getElementById("email-modal").classList.remove("show");
+}
+
+// Close modal when clicking the dark backdrop
+window.addEventListener("click", function(e) {
+    const modal = document.getElementById("email-modal");
+    if (e.target === modal) closeModal();
+});
