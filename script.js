@@ -34,14 +34,14 @@ $(document).ready(function () {
     });
 
     // typing text animation script
-    var typed = new Typed(".typing", {
+    var typed = new Typed(".typing-1", {
         strings: ["Cyber Security Student", "Python Developer", "Web Developer"],
         typeSpeed: 100,
         backSpeed: 60,
         loop: true
     });
 
-    var typed2 = new Typed(".typing-2", {
+    var typed = new Typed(".typing-2", {
         strings: ["Cyber Security Student", "Python Developer", "Web Developer"],
         typeSpeed: 100,
         backSpeed: 60,
@@ -102,42 +102,22 @@ function sendEmail() {
 
     const LOGO = "<img src='https://raw.githubusercontent.com/jesinmilesh/portfolio/main/images/Jeisn%20Tech%20Logo.png' alt='Jesin Tech Logo' width='200'>";
 
-    // 1. Confirmation email → sent to the user
+    // 1. Confirmation email â†’ sent to the user
     Email.send({
         Host: "smtp.gmail.com",
         Username: "jesintechnologies@gmail.com",
         Password: "dughwoircwixhqhb",
         To: email,
         From: "jesintechnologies@gmail.com",
-        Subject: "We received your message – " + subject,
+        Subject: "We received your message â€“ " + subject,
         Body: "<div style='text-align:left;font-family:sans-serif;'>" +
               LOGO + "<br><br>" +
               "Hello <b>" + name + "</b>,<br><br>" +
               "Welcome and thank you for reaching out to Jesin Technologies! We have received your message and will contact you within 2 to 3 working days.<br><br>" +
               "<b>Your Message:</b><br>" + message + "<br><br>" +
               "Have a good day!<br><br>" +
-              "<i>\"Once your mind stretches to a new level it never goes back to its original dimension.\"<br>– Dr. A.P.J. Abdul Kalam</i></div>"
+              "<i>\"Once your mind stretches to a new level it never goes back to its original dimension.\"<br>â€“ Dr. A.P.J. Abdul Kalam</i></div>"
     }).then(msg => {
-
-        // 2. Notification email → sent to you with all form details
-        Email.send({
-            Host: "smtp.gmail.com",
-            Username: "jesintechnologies@gmail.com",
-            Password: "dughwoircwixhqhb",
-            To: "jesintechnologies@gmail.com",
-            From: "jesintechnologies@gmail.com",
-            Subject: "📩 New Contact Form Submission – " + subject,
-            Body: "<div style='font-family:sans-serif;text-align:left;'>" +
-                  LOGO + "<br><br>" +
-                  "<h2 style='color:#dc143c;'>New Message Received</h2>" +
-                  "<hr style='border:1px solid #ddd;'><br>" +
-                  "<b>👤 Name:</b> " + name + "<br><br>" +
-                  "<b>📧 Email:</b> " + email + "<br><br>" +
-                  "<b>📌 Subject:</b> " + subject + "<br><br>" +
-                  "<b>💬 Message:</b><br>" + message + "<br><br>" +
-                  "<hr style='border:1px solid #ddd;'>" +
-                  "<small style='color:#999;'>Sent via your Portfolio contact form.</small></div>"
-        }).then(() => {});
 
         // Show success/failure modal
         const modal = document.getElementById("email-modal");
