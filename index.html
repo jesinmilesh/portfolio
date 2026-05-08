@@ -12,8 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-
 </head>
 <body>
     <div class="scroll-up-btn">
@@ -42,7 +40,7 @@
             <div class="home-content">
                 <div class="text-1">Hello, my name is</div>
                 <div class="text-2">Jesin Milesh</div>
-                <div class="text-3">And I'm a <span class="typing-1"></span></div>
+                <div class="text-3">And I'm a <span class="typing"></span></div>
                 <a href="#contact" class="menu-btn">Reach me</a>
             </div>
         </div>
@@ -288,6 +286,17 @@
         </div>
         <span>Created By <a href="https://www.instagram.com/_cute._.boy_06/">Jesin Milesh</a> | <span class="far fa-copyright"></span> 2025 All rights reserved.</span>
     </footer>
+
+    <!-- Email Status Modal -->
+    <div id="email-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <i class="fas fa-check-circle success" id="modal-icon"></i>
+            <h2 id="modal-title">Email Sent!</h2>
+            <p id="modal-message">Your message has been sent successfully.</p>
+            <button class="modal-btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

@@ -34,14 +34,14 @@ $(document).ready(function () {
     });
 
     // typing text animation script
-    var typed = new Typed(".typing-1", {
+    var typed = new Typed(".typing", {
         strings: ["Cyber Security Student", "Python Developer", "Web Developer"],
         typeSpeed: 100,
         backSpeed: 60,
         loop: true
     });
 
-    var typed = new Typed(".typing-2", {
+    var typed2 = new Typed(".typing-2", {
         strings: ["Cyber Security Student", "Python Developer", "Web Developer"],
         typeSpeed: 100,
         backSpeed: 60,
@@ -80,21 +80,18 @@ function sanitizeHTML(str) {
 }
 
 function sendEmail() {
-    if (typeof Email === 'undefined') {
-        alert("Email service (SMTP.js) is not loaded. Please check your internet connection or disable ad blockers.");
-        return;
-    }
-
+    // 1. Get the button and update UI to show sending status
     const button = document.querySelector(".button-area button");
     button.disabled = true;
     button.innerText = "Sending...";
 
+    // 2. Get form values
     const rawName    = document.querySelector("#name").value;
     const rawEmail   = document.querySelector("#email").value;
     const rawSubject = document.querySelector("#subject").value;
     const rawMessage = document.querySelector("#message").value;
 
-    // Sanitize inputs to prevent malicious HTML/scripts
+    // 3. Sanitize inputs to prevent XSS (security best practice)
     const name    = sanitizeHTML(rawName);
     const email   = sanitizeHTML(rawEmail);
     const subject = sanitizeHTML(rawSubject);
@@ -102,42 +99,38 @@ function sendEmail() {
 
     const LOGO = "<img src='https://raw.githubusercontent.com/jesinmilesh/portfolio/main/images/Jeisn%20Tech%20Logo.png' alt='Jesin Tech Logo' width='200'>";
 
-    // 1. Confirmation email â†’ sent to the user
-    Email.send({
-        Host: "smtp.gmail.com",
-        Username: "jesintechnologies@gmail.com",
-        Password: "dughwoircwixhqhb",
-        To: email,
-        From: "jesintechnologies@gmail.com",
-        Subject: "We received your message â€“ " + subject,
-        Body: "<div style='text-align:left;font-family:sans-serif;'>" +
-              LOGO + "<br><br>" +
-              "Hello <b>" + name + "</b>,<br><br>" +
-              "Welcome and thank you for reaching out to Jesin Technologies! We have received your message and will contact you within 2 to 3 working days.<br><br>" +
-              "<b>Your Message:</b><br>" + message + "<br><br>" +
-              "Have a good day!<br><br>" +
-              "<i>\"Once your mind stretches to a new level it never goes back to its original dimension.\"<br>â€“ Dr. A.P.J. Abdul Kalam</i></div>"
-    }).then(msg => {
-
-        // Show success/failure modal
+    // 4. Send the email using local Node.js server
+    fetch("http://localhost:3000/send-email", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, email, subject, message })
+    })
+    .then(response => response.text())
+    .then(msg => {
+        // 5. Get modal elements to show result
         const modal = document.getElementById("email-modal");
         const icon  = document.getElementById("modal-icon");
         const title = document.getElementById("modal-title");
         const text  = document.getElementById("modal-message");
 
+        // 6. Handle success or failure
         if (msg === "OK") {
             icon.className  = "fas fa-check-circle success";
             title.innerText = "Email Sent!";
             text.innerText = "Thank you! Your message has been sent successfully.";
-            document.getElementById("contact-form").reset();
+            document.getElementById("contact-form").reset(); // Clear form
         } else {
             icon.className  = "fas fa-times-circle error";
             title.innerText = "Not Sent";
-            text.innerText = "Oops! Something went wrong. Please try again.";
+            text.innerText = "Oops! Something went wrong. " + msg;
         }
+        
+        // Show the modal
         modal.classList.add("show");
 
-        // Enable button again
+        // 7. Reset button back to normal
         button.disabled = false;
         button.innerText = "Send message";
     });
