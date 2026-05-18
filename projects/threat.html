@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threat Analysis - Project Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+        :root {
+            --primary: #39ff14;
+            --bg-color: #050505;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 2rem 5%; overflow: hidden; }
+        .hero::before {
+            content: ''; position: absolute; top: -20%; left: -10%; width: 50%; height: 50%;
+            background: radial-gradient(circle, rgba(57,255,20,0.1) 0%, transparent 70%); filter: blur(50px); z-index: 0;
+        }
+        .container { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; z-index: 1; max-width: 1400px; margin: 0 auto; width: 100%; gap: 3rem; }
+        .content { flex: 1 1 300px; animation: fadeInLeft 1s ease; }
+        .title { font-size: 4rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1; background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .subtitle { font-size: 1.5rem; color: var(--primary); margin-bottom: 1.5rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+        .description { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+        .feature-card { background: var(--glass-bg); padding: 1.5rem; border-radius: 15px; border: 1px solid var(--glass-border); backdrop-filter: blur(10px); transition: transform 0.3s ease, border-color 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .feature-card i { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; }
+        .feature-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .feature-card p { font-size: 0.9rem; color: var(--text-muted); }
+        .image-container { flex: 1 1 300px; animation: fadeInRight 1s ease; }
+        .image-container img { width: 100%; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid var(--glass-border); transition: transform 0.5s ease; }
+        .image-container img:hover { transform: scale(1.02); }
+        .back-btn { display: inline-flex; align-items: center; padding: 1rem 2rem; background: transparent; border: 2px solid var(--primary); color: var(--primary); border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
+        .back-btn i { margin-right: 0.5rem; }
+        .back-btn:hover { background: var(--primary); color: var(--bg-color); box-shadow: 0 0 20px rgba(57, 255, 20, 0.4); }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        @media (max-width: 991px) { .container { flex-direction: column; text-align: center; } .features { text-align: left; } .title { font-size: 3rem; } }
+        .details-section { padding: 4rem 5%; background-color: var(--bg-color); position: relative; z-index: 1; }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; font-weight: 800; }
+        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1400px; margin: 0 auto; }
+        .detail-card { background: var(--glass-bg); padding: 2rem; border-radius: 15px; border: 1px solid var(--glass-border); transition: transform 0.3s ease; }
+        .detail-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .detail-card h3 { font-size: 1.5rem; color: var(--text-main); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.7rem; }
+        .detail-card h3 i { color: var(--primary); }
+        .detail-card p, .detail-card ul { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+        .detail-card ul { list-style-type: none; padding-left: 0; }
+        .detail-card ul li { margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; }
+        .detail-card ul li::before { content: '▹'; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <div class="content">
+                <div class="subtitle">Cyber Security Tool</div>
+                <h1 class="title">Threat Analysis</h1>
+                <p class="description">
+                    A robust cybersecurity tool built with Python to actively monitor system connections and Windows event logs. It features real-time network traffic analysis and identifies suspicious IP activities.
+                </p>
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Network Logs</h3>
+                        <p>Analyze incoming and outgoing traffic in real-time.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bug"></i>
+                        <h3>Threat Detection</h3>
+                        <p>Spot malicious signatures and unauthorized access attempts.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>System Security</h3>
+                        <p>Ensure robust digital environment safeguarding for your system.</p>
+                    </div>
+                </div>
+                <a href="../index.html#teams" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+            </div>
+            <div class="image-container">
+                <img src="../images/threat_dashboard_1779097954073.png" alt="Threat Dashboard">
+            </div>
+        </div>
+    </div>
+    
+    <section class="details-section">
+        <h2 class="section-title">Project Overview</h2>
+        <div class="details-grid">
+            <div class="detail-card">
+                <h3><i class="fas fa-cogs"></i> Technologies Used</h3>
+                <ul>
+                    <li><strong>Python 3:</strong> Core scripting</li>
+                    <li><strong>psutil:</strong> Real-time network socket tracking</li>
+                    <li><strong>win32evtlog:</strong> Windows Security Event parsing</li>
+                    <li><strong>socket:</strong> IP resolution and tracking</li>
+                    <li><strong>PyInstaller:</strong> Standalone executable build</li>
+                </ul>
+            </div>
+            <div class="detail-card">
+                <h3><i class="fas fa-lightbulb"></i> Problem Solved</h3>
+                <p>System administrators need instant visibility into anomalous activities. This tool automates the process of combing through dense Windows event logs and active network connections, instantly flagging unauthorized access attempts or suspicious IP behavior.</p>
+            </div>
+            <div class="detail-card">
+                <h3><i class="fas fa-rocket"></i> Key Highlights</h3>
+                <ul>
+                    <li>Real-time tracking of TCP/UDP network connections.</li>
+                    <li>Automated identification of malicious signatures.</li>
+                    <li>Direct integration with Windows Event Logs (Security channel).</li>
+                    <li>Packaged as a standalone Windows executable for easy deployment.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
