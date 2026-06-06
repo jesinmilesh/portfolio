@@ -569,50 +569,6 @@ footer span a:hover{
     text-decoration: underline;
 }
 
-/* visitor counter styling */
-footer .visitor-counter {
-    margin: 15px auto;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(220, 20, 60, 0.15); /* Transparent crimson */
-    border: 1px solid rgba(220, 20, 60, 0.3);
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-size: 15px;
-    color: #fff;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.1);
-}
-
-footer .visitor-counter:hover {
-    background: rgba(220, 20, 60, 0.25);
-    border-color: rgba(220, 20, 60, 0.6);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(220, 20, 60, 0.2);
-}
-
-footer .visitor-counter i {
-    color: crimson;
-    font-size: 16px;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.15);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
 
 
 /* responsive media query start */

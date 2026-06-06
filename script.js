@@ -71,46 +71,6 @@ $(document).ready(function(){
         }
     });
 
-    // Visitor counter API integration
-    const namespace = 'jesinportfolio';
-    const key = 'visits';
-    const storageKey = 'visited_' + namespace;
-    
-    // Determine whether to increment or just get the current count
-    const isNewVisit = !sessionStorage.getItem(storageKey);
-    const endpoint = isNewVisit
-        ? `https://api.counterapi.dev/v1/${namespace}/${key}/up`
-        : `https://api.counterapi.dev/v1/${namespace}/${key}`;
-
-    fetch(endpoint)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data && typeof data.count !== 'undefined') {
-                const countEl = document.getElementById('visit-count');
-                if (countEl) {
-                    countEl.innerText = data.count.toLocaleString();
-                }
-                if (isNewVisit) {
-                    sessionStorage.setItem(storageKey, 'true');
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching visitor count:', error);
-            // Hide the visitor counter element if the API is unreachable
-            const countEl = document.getElementById('visit-count');
-            if (countEl) {
-                const counterParent = countEl.closest('.visitor-counter');
-                if (counterParent) {
-                    counterParent.style.display = 'none';
-                }
-            }
-        });
 });
 
 // Function to get user response via prompt and callback
