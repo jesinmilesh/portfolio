@@ -388,63 +388,114 @@ section .title::after{
 .teams .title::after{
     content: "what i have done";
 }
-.teams .carousel .card{
+.teams .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 40px auto 0 auto;
+    max-width: 1000px;
+}
+.teams .projects-grid .card {
     background: #222;
     border-radius: 6px;
-    padding: 25px 35px;
+    padding: 20px;
     text-align: center;
     overflow: hidden;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.teams .carousel .card:hover{
+.teams .projects-grid .card:hover {
     background: crimson;
 }
-.teams .carousel .card .box{
+.teams .projects-grid .card .box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    height: 100%;
     transition: all 0.3s ease;
 }
-.teams .carousel .card:hover .box{
-    transform: scale(1.05);
+.teams .projects-grid .card:hover .box {
+    transform: scale(1.02);
 }
-.teams .carousel .card .text{
-    font-size: 25px;
-    font-weight: 500;
-    margin: 10px 0 7px 0;
+.teams .projects-grid .card .text {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px 0 5px 0;
 }
-.teams .carousel .card img{
-    height: 160px;
+.teams .projects-grid .card img {
+    height: 140px;
     width: 100%;
     object-fit: cover;
-    border-radius: 10px;
-    border: 3px solid crimson;
+    border-radius: 8px;
+    border: 2px solid crimson;
     transition: all 0.3s ease;
 }
-.teams .carousel .card:hover img{
+.teams .projects-grid .card:hover img {
     border-color: #fff;
 }
-.owl-dots{
-    text-align: center;
-    margin-top: 20px;
+.teams .projects-grid .card p {
+    font-size: 13.5px;
+    margin: 8px 0 15px 0;
+    color: #dfdfdf;
+    line-height: 1.45;
 }
-.owl-dot{
-    height: 13px;
-    width: 13px;
-    margin: 0 5px;
-    outline: none!important;
-    border-radius: 50%;
-    border: 2px solid crimson!important;
+.teams .projects-grid .card .project-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: space-between;
+    width: 100%;
+}
+.teams .projects-grid .card .view-btn {
+    display: inline-block;
+    padding: 6px 20px;
+    border-radius: 6px;
+    background: crimson;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 2px solid crimson;
     transition: all 0.3s ease;
+    margin-top: auto;
 }
-.owl-dot.active{
-    width: 35px;
-    border-radius: 14px;
+.teams .projects-grid .card .view-btn:hover {
+    background: none;
+    color: #fff;
+    border-color: #fff;
 }
-.owl-dot.active,
-.owl-dot:hover{
-    background: crimson!important;
+.teams .projects-grid .card:hover .view-btn {
+    background: #fff;
+    color: crimson;
+    border-color: #fff;
+}
+
+/* 5th project layout on desktop (making it look balanced in a 2x2 + 1 layout) */
+@media (min-width: 948px) {
+    .teams .projects-grid .card:nth-child(5) {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc(50% - 12px); /* Matches identical size of other grid cards */
+    }
+}
+
+/* responsive media query */
+@media (max-width: 947px) {
+    .teams .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 500px;
+    }
+    .teams .projects-grid .card {
+        padding: 20px 15px;
+    }
+    .teams .projects-grid .card img {
+        height: 160px;
+    }
 }
 
 /* contact section styling */
