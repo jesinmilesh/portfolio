@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Privacy Mirror - Project Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+        :root {
+            --primary: #00F5FF;
+            --secondary: #BF5AF2;
+            --bg-color: #0A0E1A;
+            --surface: #111827;
+            --surface-light: #1F2937;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(0, 245, 255, 0.15);
+            --text-main: #FFFFFF;
+            --text-muted: #9CA3AF;
+            --neon-pink: #FF2D78;
+            --neon-green: #30D158;
+            --neon-yellow: #FFFFD60A;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Rajdhani', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
+        h1, h2, h3, .heading-font { font-family: 'Orbitron', sans-serif; }
+        
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 2rem 5%; overflow: hidden; }
+        .hero::before {
+            content: ''; position: absolute; top: -10%; left: -10%; width: 60%; height: 60%;
+            background: radial-gradient(circle, rgba(0,245,255,0.12) 0%, transparent 70%); filter: blur(60px); z-index: 0;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -10%; right: -10%; width: 60%; height: 60%;
+            background: radial-gradient(circle, rgba(191,90,242,0.1) 0%, transparent 70%); filter: blur(60px); z-index: 0;
+        }
+        .container { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; z-index: 1; max-width: 1400px; margin: 0 auto; width: 100%; gap: 3rem; }
+        .content { flex: 1 1 500px; animation: fadeInLeft 1s ease; }
+        
+        .title { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1; background: linear-gradient(90deg, #fff, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; letter-spacing: 1px; }
+        .subtitle { font-size: 1.2rem; color: var(--primary); margin-bottom: 1.5rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; text-shadow: 0 0 10px rgba(0, 245, 255, 0.4); }
+        .description { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 700px; }
+        
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+        .feature-card { background: var(--glass-bg); padding: 1.5rem; border-radius: 15px; border: 1px solid var(--glass-border); backdrop-filter: blur(10px); transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); border-color: var(--secondary); box-shadow: 0 0 20px rgba(191, 90, 242, 0.25); }
+        .feature-card i { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; text-shadow: 0 0 10px rgba(0, 245, 255, 0.5); }
+        .feature-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; letter-spacing: 1px; }
+        .feature-card p { font-size: 0.95rem; color: var(--text-muted); }
+        
+        .image-container { flex: 1 1 400px; display: flex; justify-content: center; align-items: center; animation: fadeInRight 1s ease; }
+        .image-container img { width: 85%; max-width: 450px; border-radius: 24px; box-shadow: 0 0 40px rgba(0,245,255,0.15); border: 2px solid var(--glass-border); transition: transform 0.5s ease; filter: drop-shadow(0 0 25px rgba(0, 245, 255, 0.1)); }
+        .image-container img:hover { transform: scale(1.04) rotate(1deg); border-color: var(--primary); }
+        
+        .btn-group { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 2rem; }
+        .btn { display: inline-flex; align-items: center; padding: 1rem 2.2rem; background: transparent; border: 2px solid var(--primary); color: var(--primary); border-radius: 30px; text-decoration: none; font-weight: 600; font-family: 'Orbitron', sans-serif; font-size: 0.9rem; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
+        .btn i { margin-right: 0.5rem; }
+        .btn:hover { background: var(--primary); color: var(--bg-color); box-shadow: 0 0 25px rgba(0, 245, 255, 0.55); }
+        .btn.primary { background: linear-gradient(90deg, var(--primary), var(--secondary)); border: none; color: var(--bg-color); }
+        .btn.primary:hover { background: transparent; border: 2px solid var(--secondary); color: var(--secondary); box-shadow: 0 0 25px rgba(191, 90, 242, 0.55); }
+        
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        @media (max-width: 991px) { .container { flex-direction: column; text-align: center; } .features { text-align: left; } .title { font-size: 2.8rem; } .image-container img { width: 70%; } .btn-group { justify-content: center; } }
+        
+        .details-section { padding: 5rem 5%; background-color: rgba(10, 14, 26, 0.95); position: relative; z-index: 1; }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3.5rem; background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; font-weight: 800; letter-spacing: 2px; }
+        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1400px; margin: 0 auto; }
+        .detail-card { background: var(--glass-bg); padding: 2.2rem; border-radius: 20px; border: 1px solid var(--glass-border); transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+        .detail-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0, 245, 255, 0.15); }
+        .detail-card h3 { font-size: 1.4rem; color: var(--text-main); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem; letter-spacing: 1px; }
+        .detail-card h3 i { color: var(--primary); text-shadow: 0 0 8px rgba(0, 245, 255, 0.4); }
+        .detail-card p, .detail-card ul { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; }
+        .detail-card ul { list-style-type: none; padding-left: 0; }
+        .detail-card ul li { margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; }
+        .detail-card ul li::before { content: '⚡'; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
+        
+        /* Formula Visualization */
+        .formula-box { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(0, 245, 255, 0.1); padding: 1.5rem; border-radius: 12px; margin-top: 1rem; text-align: center; font-family: 'Orbitron', monospace; font-size: 0.95rem; }
+        .formula-num { color: var(--primary); font-weight: bold; }
+        
+        /* Platform tabs styling */
+        .platform-section { padding: 4rem 5%; background: rgba(17, 24, 39, 0.6); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
+        .tabs-header { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 3rem; }
+        .tab-btn { background: transparent; border: 1px solid var(--glass-border); color: var(--text-muted); padding: 0.8rem 2.2rem; font-family: 'Orbitron', sans-serif; font-weight: bold; border-radius: 30px; cursor: pointer; transition: all 0.3s ease; }
+        .tab-btn.active, .tab-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(0, 245, 255, 0.05); box-shadow: 0 0 15px rgba(0, 245, 255, 0.2); }
+        .tab-content { display: none; max-width: 1200px; margin: 0 auto; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        @media (max-width: 768px) { .tab-content.active { grid-template-columns: 1fr; } }
+        
+        .tab-text h4 { font-size: 1.8rem; margin-bottom: 1rem; color: #fff; }
+        .tab-text p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .tab-list { list-style: none; }
+        .tab-list li { margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.8rem; font-size: 1.05rem; }
+        .tab-list li i { color: var(--secondary); margin-top: 0.3rem; }
+        
+        .arch-flow-diagram { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; margin: 2rem auto; max-width: 600px; padding: 2rem; background: rgba(0,0,0,0.2); border-radius: 16px; border: 1px dashed var(--glass-border); }
+        .diag-node { background: var(--surface-light); border: 1.5px solid var(--primary); color: #fff; padding: 1rem 1.5rem; border-radius: 8px; width: 100%; text-align: center; font-family: 'Orbitron', sans-serif; font-weight: bold; box-shadow: 0 0 10px rgba(0, 245, 255, 0.1); }
+        .diag-node.secondary { border-color: var(--secondary); box-shadow: 0 0 10px rgba(191, 90, 242, 0.1); }
+        .diag-arrow { color: var(--primary); font-size: 1.5rem; text-shadow: 0 0 5px rgba(0, 245, 255, 0.5); }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <div class="content">
+                <div class="subtitle">AI Cybersecurity Operating Layer</div>
+                <h1 class="title">Cyber Privacy Mirror</h1>
+                <p class="description">
+                    An advanced cross-platform cybersecurity, privacy, network intelligence, and device health monitoring engine. Designed for Windows and Android, it parses low-level system telemetry into a readable Cyber Health Posture.
+                </p>
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI Security Coach</h3>
+                        <p>A companion assistant that offers status briefs, explains permissions risk, and guides fixes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Network Intelligence</h3>
+                        <p>Monitors adapters, tracks VPN status, DNS configurations, and detects exposure in real-time.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>Posture Diagnostics</h3>
+                        <p>Calculates dynamic security metrics and runs diagnostic automated self-test suites.</p>
+                    </div>
+                </div>
+                
+                <div class="btn-group">
+                    <a href="../projects/Cyber_Privacy_Mirror_Setup.exe" download class="btn primary"><i class="fab fa-windows"></i> Windows Setup</a>
+                    <a href="../projects/Cyber_Privacy_Mirror.apk" download class="btn"><i class="fab fa-android"></i> Android APK</a>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="../images/cyber_privacy_mirror_icon.png" alt="Cyber Privacy Mirror Logo">
+            </div>
+        </div>
+    </div>
+    
+    <section class="platform-section">
+        <h2 class="section-title">Platform UI Implementations</h2>
+        <div class="tabs-header">
+            <button class="tab-btn active" onclick="switchTab('windows-tab')">Windows (Fluent)</button>
+            <button class="tab-btn" onclick="switchTab('android-tab')">Android (Material 3)</button>
+        </div>
+        
+        <div id="windows-tab" class="tab-content active">
+            <div class="tab-text">
+                <h4>Windows Desktop Dashboard</h4>
+                <p>Tailored specifically for desktop architectures, leveraging Fluent Design guidelines for a modern and integrated experience.</p>
+                <ul class="tab-list">
+                    <li><i class="fas fa-check-circle"></i> <div><strong>Sidebar Navigation:</strong> Acrylic styled navigation sidebar to easily jump between centers.</div></li>
+                    <li><i class="fas fa-check-circle"></i> <div><strong>Sliding Right Drawer:</strong> Fluid overlays utilizing slide transitions for examining app details.</div></li>
+                    <li><i class="fas fa-check-circle"></i> <div><strong>Windows Diagnostics:</strong> Inspects registry startup items, active ports, digital signature validations, and Defender statuses.</div></li>
+                </ul>
+            </div>
+            <div class="tab-text">
+                <div class="arch-flow-diagram">
+                    <div class="diag-node">Windows Fluent Client</div>
+                    <div class="diag-arrow">▼</div>
+                    <div class="diag-node secondary">Platform C++ MethodChannels</div>
+                    <div class="diag-arrow">▼</div>
+                    <div class="diag-node">Windows Defender & Registry Query</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="android-tab" class="tab-content">
+            <div class="tab-text">
+                <h4>Android Mobile client</h4>
+                <p>Designed around Material 3 specs to adapt perfectly to mobile forms, providing smooth tactile feedback.</p>
+                <ul class="tab-list">
+                    <li><i class="fas fa-check-circle"></i> <div><strong>Bottom Sheet Details:</strong> Opens modals highlighting sensitive app permissions.</div></li>
+                    <li><i class="fas fa-check-circle"></i> <div><strong>Sandbox Audits:</strong> Evaluates camera, microphone, background processes, and location indicators.</div></li>
+                    <li><i class="fas fa-check-circle"></i> <div><strong>Battery & Storage:</strong> Minimizes system resources overhead with customized hooks.</div></li>
+                </ul>
+            </div>
+            <div class="tab-text">
+                <div class="arch-flow-diagram">
+                    <div class="diag-node">Android Material 3 UI</div>
+                    <div class="diag-arrow">▼</div>
+                    <div class="diag-node secondary">Kotlin Daemon Interop</div>
+                    <div class="diag-arrow">▼</div>
+                    <div class="diag-node">Android System Permission Manager</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="details-section">
+        <h2 class="section-title">Core Technical Design</h2>
+        <div class="details-grid">
+            <div class="detail-card">
+                <h3><i class="fas fa-calculator"></i> Posture Score Logic</h3>
+                <p>The Cyber Health Posture score aggregates data streams into a single weighted score from 0 to 100%:</p>
+                <div class="formula-box">
+                    Score = (<span class="formula-num">Security</span> + <span class="formula-num">Privacy</span> + <span class="formula-num">Network</span> + <span class="formula-num">Device</span> + <span class="formula-num">Checklist</span> + <span class="formula-num">Password</span> + <span class="formula-num">AppRisk</span>) / <span class="formula-num">7</span>
+                </div>
+                <p style="margin-top: 1rem;">
+                    Scores update reactively based on events like toggling VPN (+25 points), network socket shifts, or security configurations change.
+                </p>
+            </div>
+            
+            <div class="detail-card">
+                <h3><i class="fas fa-shield-alt"></i> Security & Cryptography</h3>
+                <ul>
+                    <li><strong>Zero Remote Storage:</strong> Absolutely no metrics, passwords, or logs leave the local device storage.</li>
+                    <li><strong>AES Encription:</strong> System profiles and cached secrets are stored securely (DPAPI on Windows, Keystore/AES-Encrypted SharedPreferences on Android).</li>
+                    <li><strong>SHA-256 Hashing:</strong> Safe credentials gatekeeping without raw password exposures.</li>
+                </ul>
+            </div>
+            
+            <div class="detail-card">
+                <h3><i class="fas fa-laptop-code"></i> Engineering Stack</h3>
+                <ul>
+                    <li><strong>Flutter & Dart:</strong> Single codebase rendering native desktop and mobile frameworks.</li>
+                    <li><strong>Reactive Services:</strong> ValueNotifier and ChangeNotifier integrated with ListenableBuilder for lightweight, lag-free UI updates.</li>
+                    <li><strong>Platform Channels:</strong> Native interop through structured MethodChannels communicating with low-level OS telemetry libraries.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
