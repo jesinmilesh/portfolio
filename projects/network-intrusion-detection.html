@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Threat Analysis - Project Detail</title>
+    <title>Network Intrusion Detection System - Project Detail</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         :root {
-            --primary: #A78BFA;
-            --primary-dark: #7C3AED;
-            --accent: #06B6D4;
+            --primary: #EF4444;
+            --primary-dark: #B91C1C;
+            --accent: #7C3AED;
             --bg-color: #080810;
             --glass-bg: rgba(255, 255, 255, 0.04);
-            --glass-border: rgba(124,58,237,0.25);
+            --glass-border: rgba(239, 68, 68, 0.25);
             --text-main: #F1F5F9;
             --text-muted: #94A3B8;
-            --gradient: linear-gradient(135deg, #7C3AED, #06B6D4);
+            --gradient: linear-gradient(135deg, #EF4444, #7C3AED);
         }
 
         * {
@@ -50,7 +50,7 @@
             left: -10%;
             width: 50%;
             height: 50%;
-            background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
             filter: blur(60px);
             z-index: 0;
         }
@@ -87,7 +87,7 @@
 
         .subtitle {
             font-size: 1.5rem;
-            color: var(--primary);
+            color: var(--primary) !important;
             margin-bottom: 1.5rem;
             font-weight: 600;
             letter-spacing: 2px;
@@ -141,18 +141,60 @@
         .image-container {
             flex: 1 1 300px;
             animation: fadeInRight 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .image-container img {
+        .image-wrapper {
             width: 100%;
+            max-width: 500px;
+            height: 350px;
             border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #050510, #1a0505);
             border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: transform 0.5s ease;
         }
 
-        .image-container img:hover {
+        .image-wrapper:hover {
             transform: scale(1.02);
+            border-color: var(--primary);
+        }
+
+        .image-wrapper i {
+            font-size: 100px;
+            background: linear-gradient(135deg, #ef4444, #7C3AED);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.4rem;
+            font-size: 13px;
+            background: var(--gradient);
+            color: #fff !important;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+            color: #fff !important;
         }
 
         .btn {
@@ -177,7 +219,7 @@
         .btn:hover {
             background: var(--primary);
             color: var(--bg-color);
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
         }
 
         .btn.primary {
@@ -188,30 +230,6 @@
         .btn.primary:hover {
             background: transparent;
             color: var(--primary);
-        }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.4rem;
-            font-size: 13px;
-            background: var(--gradient);
-            color: #fff;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            border: none;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
-        }
-        .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(124,58,237,0.5);
-            color: #fff;
         }
 
         .button-group {
@@ -271,7 +289,7 @@
             font-size: 2.5rem;
             text-align: center;
             margin-bottom: 3rem;
-            background: linear-gradient(90deg, #fff, var(--primary));
+            background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -339,8 +357,6 @@
             color: var(--primary);
             font-weight: bold;
         }
-        .subtitle { color: var(--accent) !important; }
-        .section-title { background: var(--gradient); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
     </style>
 </head>
 
@@ -349,37 +365,37 @@
         <div class="container">
             <div class="content">
                 <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
-                <div class="subtitle">Cyber Security Tool</div>
-                <h1 class="title">Threat Analysis</h1>
+                <div class="subtitle">Threat Intelligence</div>
+                <h1 class="title">Network Intrusion Detection</h1>
                 <p class="description">
-                    A robust cybersecurity tool built with Python to actively monitor system connections and Windows
-                    event logs. It features real-time network traffic analysis and identifies suspicious IP activities.
+                    An advanced security monitoring system built in Python to safeguard local networks. It intercepts active packet streams, analyzes payload contents against dynamic rules, and logs warnings for immediate incident mitigation.
                 </p>
                 <div class="features">
                     <div class="feature-card">
-                        <i class="fas fa-network-wired"></i>
-                        <h3>Network Logs</h3>
-                        <p>Analyze incoming and outgoing traffic in real-time.</p>
+                        <i class="fas fa-crosshairs"></i>
+                        <h3>Signature Scan</h3>
+                        <p>Evaluate payloads against customized security definitions.</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-bug"></i>
-                        <h3>Threat Detection</h3>
-                        <p>Spot malicious signatures and unauthorized access attempts.</p>
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Anomalous Alerting</h3>
+                        <p>Identify DDoS floods, scans, and unauthorized behaviors.</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>System Security</h3>
-                        <p>Ensure robust digital environment safeguarding for your system.</p>
+                        <i class="fas fa-history"></i>
+                        <h3>Incident Records</h3>
+                        <p>Register structured logs with severity rankings for security audits.</p>
                     </div>
                 </div>
                 <div style="margin-top: 2rem;">
-                    <a href="ThreatAnalysis.exe" download class="btn primary"
-                        style="padding: 1rem 2.5rem; box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);"><i
-                            class="fas fa-download"></i> Download Now</a>
+                    <a href="https://github.com/jesinmilesh/CodeAlpha/tree/main/Network%20Intrusion%20Detection%20System" target="_blank" class="btn primary"
+                        style="padding: 1rem 2.5rem;"><i class="fab fa-github"></i> View Repository</a>
                 </div>
             </div>
             <div class="image-container">
-                <img src="../images/threat_dashboard_1779097954073.png" alt="Threat Dashboard">
+                <div class="image-wrapper">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
             </div>
         </div>
     </div>
@@ -390,26 +406,23 @@
             <div class="detail-card">
                 <h3><i class="fas fa-cogs"></i> Technologies Used</h3>
                 <ul>
-                    <li><strong>Python 3:</strong> Core scripting</li>
-                    <li><strong>psutil:</strong> Real-time network socket tracking</li>
-                    <li><strong>win32evtlog:</strong> Windows Security Event parsing</li>
-                    <li><strong>socket:</strong> IP resolution and tracking</li>
-                    <li><strong>PyInstaller:</strong> Standalone executable build</li>
+                    <li><strong>Python 3:</strong> Rules evaluation engine and socket handler</li>
+                    <li><strong>Scapy:</strong> Network sniffing and raw header field mapping</li>
+                    <li><strong>Regular Expressions:</strong> Matching bytes patterns in payload segments</li>
+                    <li><strong>Logging API:</strong> Real-time structured notification storage</li>
                 </ul>
             </div>
             <div class="detail-card">
                 <h3><i class="fas fa-lightbulb"></i> Problem Solved</h3>
-                <p>System administrators need instant visibility into anomalous activities. This tool automates the
-                    process of combing through dense Windows event logs and active network connections, instantly
-                    flagging unauthorized access attempts or suspicious IP behavior.</p>
+                <p>Simple network capture scripts collect traffic logs without identifying security risk. This IDS continuously checks packet layers against custom alert definitions, enabling developers and administrators to immediately spot active scanning, unauthorized request paths, or packet flood conditions.</p>
             </div>
             <div class="detail-card">
                 <h3><i class="fas fa-rocket"></i> Key Highlights</h3>
                 <ul>
-                    <li>Real-time tracking of TCP/UDP network connections.</li>
-                    <li>Automated identification of malicious signatures.</li>
-                    <li>Direct integration with Windows Event Logs (Security channel).</li>
-                    <li>Packaged as a standalone Windows executable for easy deployment.</li>
+                    <li>Dynamic rule loading to scan packet payloads for exploit strings.</li>
+                    <li>Threshold configurations to block Syn Flood and DoS/DDoS vectors.</li>
+                    <li>Color-coded logging of warning levels (Info, Alert, Critical).</li>
+                    <li>Easily extensible to integrate with SIEM monitoring tools.</li>
                 </ul>
             </div>
         </div>

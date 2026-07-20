@@ -99,6 +99,29 @@
         .diag-node.secondary { border-color: var(--secondary); box-shadow: 0 0 10px rgba(191, 90, 242, 0.1); }
         .diag-arrow { color: var(--primary); font-size: 1.5rem; text-shadow: 0 0 5px rgba(0, 245, 255, 0.5); }
         
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.4rem;
+            font-size: 13px;
+            background: linear-gradient(135deg,#7C3AED,#06B6D4);
+            color: #fff !important;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+            color: #fff !important;
+        }
+
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
@@ -106,6 +129,7 @@
     <div class="hero">
         <div class="container">
             <div class="content">
+                <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
                 <div class="subtitle">AI Cybersecurity Operating Layer</div>
                 <h1 class="title">Cyber Privacy Mirror</h1>
                 <p class="description">

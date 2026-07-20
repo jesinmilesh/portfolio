@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Threat Analysis - Project Detail</title>
+    <title>Network Intrusion Sniffer - Project Detail</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         :root {
             --primary: #A78BFA;
@@ -50,7 +50,7 @@
             left: -10%;
             width: 50%;
             height: 50%;
-            background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
             filter: blur(60px);
             z-index: 0;
         }
@@ -87,7 +87,7 @@
 
         .subtitle {
             font-size: 1.5rem;
-            color: var(--primary);
+            color: var(--accent) !important;
             margin-bottom: 1.5rem;
             font-weight: 600;
             letter-spacing: 2px;
@@ -141,18 +141,60 @@
         .image-container {
             flex: 1 1 300px;
             animation: fadeInRight 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .image-container img {
+        .image-wrapper {
             width: 100%;
+            max-width: 500px;
+            height: 350px;
             border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #050510, #0a1a0a);
             border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: transform 0.5s ease;
         }
 
-        .image-container img:hover {
+        .image-wrapper:hover {
             transform: scale(1.02);
+            border-color: var(--accent);
+        }
+
+        .image-wrapper i {
+            font-size: 100px;
+            background: linear-gradient(135deg, #06B6D4, #22c55e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.4rem;
+            font-size: 13px;
+            background: var(--gradient);
+            color: #fff !important;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+            color: #fff !important;
         }
 
         .btn {
@@ -177,7 +219,7 @@
         .btn:hover {
             background: var(--primary);
             color: var(--bg-color);
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.4);
         }
 
         .btn.primary {
@@ -188,30 +230,6 @@
         .btn.primary:hover {
             background: transparent;
             color: var(--primary);
-        }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.4rem;
-            font-size: 13px;
-            background: var(--gradient);
-            color: #fff;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            border: none;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
-        }
-        .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(124,58,237,0.5);
-            color: #fff;
         }
 
         .button-group {
@@ -271,7 +289,7 @@
             font-size: 2.5rem;
             text-align: center;
             margin-bottom: 3rem;
-            background: linear-gradient(90deg, #fff, var(--primary));
+            background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -339,8 +357,6 @@
             color: var(--primary);
             font-weight: bold;
         }
-        .subtitle { color: var(--accent) !important; }
-        .section-title { background: var(--gradient); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
     </style>
 </head>
 
@@ -350,36 +366,36 @@
             <div class="content">
                 <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
                 <div class="subtitle">Cyber Security Tool</div>
-                <h1 class="title">Threat Analysis</h1>
+                <h1 class="title">Network Intrusion Sniffer</h1>
                 <p class="description">
-                    A robust cybersecurity tool built with Python to actively monitor system connections and Windows
-                    event logs. It features real-time network traffic analysis and identifies suspicious IP activities.
+                    A professional network packet analyzer built using Python and the Scapy library. It captures live network packets, dissects protocol headers, and outputs real-time payload analytics for diagnostic and security audits.
                 </p>
                 <div class="features">
                     <div class="feature-card">
-                        <i class="fas fa-network-wired"></i>
-                        <h3>Network Logs</h3>
-                        <p>Analyze incoming and outgoing traffic in real-time.</p>
+                        <i class="fas fa-barcode"></i>
+                        <h3>Packet Decoding</h3>
+                        <p>Detailed analysis of TCP, UDP, ICMP, and DNS layers.</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-bug"></i>
-                        <h3>Threat Detection</h3>
-                        <p>Spot malicious signatures and unauthorized access attempts.</p>
+                        <i class="fas fa-filter"></i>
+                        <h3>Protocol Filtering</h3>
+                        <p>Isolate traffic streams using specific network filters.</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>System Security</h3>
-                        <p>Ensure robust digital environment safeguarding for your system.</p>
+                        <i class="fas fa-file-invoice"></i>
+                        <h3>Diagnostic Logs</h3>
+                        <p>Save structured packet details to files for forensic review.</p>
                     </div>
                 </div>
                 <div style="margin-top: 2rem;">
-                    <a href="ThreatAnalysis.exe" download class="btn primary"
-                        style="padding: 1rem 2.5rem; box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);"><i
-                            class="fas fa-download"></i> Download Now</a>
+                    <a href="https://github.com/jesinmilesh/CodeAlpha/tree/main/Basic_Network_Sniffer" target="_blank" class="btn primary"
+                        style="padding: 1rem 2.5rem;"><i class="fab fa-github"></i> View Repository</a>
                 </div>
             </div>
             <div class="image-container">
-                <img src="../images/threat_dashboard_1779097954073.png" alt="Threat Dashboard">
+                <div class="image-wrapper">
+                    <i class="fas fa-network-wired"></i>
+                </div>
             </div>
         </div>
     </div>
@@ -390,26 +406,23 @@
             <div class="detail-card">
                 <h3><i class="fas fa-cogs"></i> Technologies Used</h3>
                 <ul>
-                    <li><strong>Python 3:</strong> Core scripting</li>
-                    <li><strong>psutil:</strong> Real-time network socket tracking</li>
-                    <li><strong>win32evtlog:</strong> Windows Security Event parsing</li>
-                    <li><strong>socket:</strong> IP resolution and tracking</li>
-                    <li><strong>PyInstaller:</strong> Standalone executable build</li>
+                    <li><strong>Python 3:</strong> Application engine & formatting logic</li>
+                    <li><strong>Scapy:</strong> Raw socket packet capture, binding, and packet dissection</li>
+                    <li><strong>Colorama:</strong> Visual terminal output highlighting</li>
+                    <li><strong>OS Sockets:</strong> Direct network interface integration</li>
                 </ul>
             </div>
             <div class="detail-card">
                 <h3><i class="fas fa-lightbulb"></i> Problem Solved</h3>
-                <p>System administrators need instant visibility into anomalous activities. This tool automates the
-                    process of combing through dense Windows event logs and active network connections, instantly
-                    flagging unauthorized access attempts or suspicious IP behavior.</p>
+                <p>Understanding raw network data flowing through an interface is difficult without complex tools. This lightweight CLI packet sniffer decodes Ethernet, IP, TCP, and UDP layers on the fly, rendering structured packet fields to the terminal for fast network debugging and vulnerability detection.</p>
             </div>
             <div class="detail-card">
                 <h3><i class="fas fa-rocket"></i> Key Highlights</h3>
                 <ul>
-                    <li>Real-time tracking of TCP/UDP network connections.</li>
-                    <li>Automated identification of malicious signatures.</li>
-                    <li>Direct integration with Windows Event Logs (Security channel).</li>
-                    <li>Packaged as a standalone Windows executable for easy deployment.</li>
+                    <li>Live packet interception on any active network interface.</li>
+                    <li>Structured output showing IP sources, destinations, ports, and protocol flags.</li>
+                    <li>Hex payload dump rendering for packet content inspections.</li>
+                    <li>No external system GUI dependencies, running cleanly in terminal windows.</li>
                 </ul>
             </div>
         </div>

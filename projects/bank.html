@@ -9,12 +9,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
         :root {
-            --primary: #00ffcc;
-            --bg-color: #0d1117;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #f0f6fc;
-            --text-muted: #8b949e;
+            --primary: #A78BFA;
+            --primary-dark: #7C3AED;
+            --accent: #06B6D4;
+            --bg-color: #080810;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(124,58,237,0.25);
+            --text-main: #F1F5F9;
+            --text-muted: #94A3B8;
+            --gradient: linear-gradient(135deg, #7C3AED, #06B6D4);
         }
 
         * {
@@ -47,8 +50,19 @@
             left: -10%;
             width: 50%;
             height: 50%;
-            background: radial-gradient(circle, rgba(0, 255, 204, 0.15) 0%, transparent 70%);
-            filter: blur(50px);
+            background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: 0;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            right: -5%;
+            width: 35%;
+            height: 35%;
+            background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 70%);
+            filter: blur(60px);
             z-index: 0;
         }
 
@@ -75,11 +89,12 @@
             font-weight: 800;
             margin-bottom: 1rem;
             line-height: 1.1;
-            background: linear-gradient(90deg, #fff, var(--primary));
+            background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             color: transparent;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .subtitle {
@@ -155,26 +170,25 @@
         .back-btn {
             display: inline-flex;
             align-items: center;
-            padding: 1rem 2rem;
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
+            gap: 0.5rem;
+            padding: 0.6rem 1.4rem;
+            font-size: 13px;
+            background: var(--gradient);
+            color: #fff;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
+            border: none;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
         }
-
-        .back-btn i {
-            margin-right: 0.5rem;
-        }
-
         .back-btn:hover {
-            background: var(--primary);
-            color: var(--bg-color);
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124,58,237,0.5);
+            color: #fff;
         }
 
         @keyframes fadeInLeft {
@@ -295,13 +309,19 @@
             color: var(--primary);
             font-weight: bold;
         }
+        .subtitle { color: var(--accent) !important; }
+        .feature-card:hover { border-color: var(--primary-dark); box-shadow: 0 0 20px rgba(124,58,237,0.25); }
+        .detail-card:hover { border-color: var(--primary-dark); box-shadow: 0 0 20px rgba(124,58,237,0.2); }
+        .section-title { background: var(--gradient); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="hero">
         <div class="container">
             <div class="content">
+                <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
                 <div class="subtitle">Python Desktop App</div>
                 <h1 class="title">Bank Management System</h1>
                 <p class="description">
