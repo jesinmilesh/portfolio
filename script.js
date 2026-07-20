@@ -43,15 +43,17 @@ document.querySelectorAll('.menu-link').forEach(link => {
 // ── Active nav link on scroll ──
 function updateActiveLink() {
   const sections = document.querySelectorAll('section[id]');
-  const scrollPos = window.scrollY + 120;
+  const threshold = 150; // trigger active state when section top is within 150px of viewport top
   sections.forEach(sec => {
-    const top = sec.offsetTop;
-    const height = sec.offsetHeight;
+    const rect = sec.getBoundingClientRect();
     const id = sec.getAttribute('id');
     const link = document.querySelector(`.menu-link[href="#${id}"]`);
     if (link) {
-      if (scrollPos >= top && scrollPos < top + height) link.classList.add('active-link');
-      else link.classList.remove('active-link');
+      if (rect.top <= threshold && rect.bottom > threshold) {
+        link.classList.add('active-link');
+      } else {
+        link.classList.remove('active-link');
+      }
     }
   });
 }
@@ -459,4 +461,5 @@ class ProfileImageScrollTransition {
 document.addEventListener('DOMContentLoaded', () => {
   new InteractiveCursorAndBg();
   new ProfileImageScrollTransition();
+  updateActiveLink();
 });
