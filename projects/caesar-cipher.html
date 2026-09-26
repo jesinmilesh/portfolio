@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesar Cipher Encryption Tool - Project Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #F59E0B;
+            --primary-dark: #D97706;
+            --accent: #EC4899;
+            --bg-color: #080810;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(245, 158, 11, 0.25);
+            --text-main: #F1F5F9;
+            --text-muted: #94A3B8;
+            --gradient: linear-gradient(135deg, #F59E0B, #EC4899);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem 5%;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            gap: 3rem;
+        }
+
+        .content {
+            flex: 1 1 500px;
+            animation: fadeInLeft 1s ease;
+        }
+
+        .title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--primary) !important;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 650px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .image-container {
+            flex: 1 1 350px;
+            animation: fadeInRight 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-wrapper {
+            width: 100%;
+            max-width: 480px;
+            height: 380px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #1f1406, #2d1808);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            transition: transform 0.5s ease;
+        }
+
+        .image-wrapper:hover {
+            transform: scale(1.02);
+            border-color: var(--primary);
+        }
+
+        .image-wrapper i {
+            font-size: 110px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .image-badge {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            color: #fcd34d;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.4rem;
+            font-size: 13px;
+            background: var(--gradient);
+            color: #080810 !important;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+            color: #080810 !important;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn.primary {
+            background: var(--primary);
+            color: var(--bg-color);
+        }
+
+        .btn.primary:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 991px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .features {
+                text-align: left;
+            }
+            .title {
+                font-size: 2.8rem;
+            }
+        }
+
+        .details-section {
+            padding: 4rem 5%;
+            background-color: var(--bg-color);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            font-weight: 800;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .detail-card {
+            background: var(--glass-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .detail-card h3 {
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .detail-card h3 i {
+            color: var(--primary);
+        }
+
+        .detail-card p,
+        .detail-card ul {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .detail-card ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .detail-card ul li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .detail-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <div class="container">
+            <div class="content">
+                <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
+                <div class="subtitle">Classical Cryptography & Ciphers</div>
+                <h1 class="title">Caesar Cipher Encryption Tool</h1>
+                <p class="description">
+                    An interactive cryptosystem demonstrator implementing the classical Caesar substitution cipher. Performs mathematical character rotation modulo 26, preserving punctuation, casing, and spaces while illustrating fundamental cryptographic principles.
+                </p>
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-rotate"></i>
+                        <h3>Shift Key Dynamics</h3>
+                        <p>Supports key rotation values from 1 to 25 with automatic input clamping and validation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-lock-open"></i>
+                        <h3>Bi-directional Engine</h3>
+                        <p>Dedicated Encrypt and Decrypt pipelines utilizing modular arithmetic inversion.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-font"></i>
+                        <h3>Case & Symbol Safety</h3>
+                        <p>Preserves uppercase/lowercase integrity while leaving digits, spaces, and punctuation intact.</p>
+                    </div>
+                </div>
+                <div class="button-group" style="margin-top: 2rem;">
+                    <a href="https://caesar-cipher-delta.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn primary"
+                        style="padding: 1rem 2.5rem; box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);"><i
+                            class="fas fa-external-link-alt"></i> Visit Site</a>
+                    <a href="https://github.com/jesinmilesh/Caesar-Cipher" target="_blank" rel="noopener noreferrer" class="btn"
+                        style="padding: 1rem 2.5rem;"><i class="fab fa-github"></i> View Repository</a>
+                </div>
+            </div>
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <div class="image-badge">Substitution Cryptosystem</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="details-section">
+        <h2 class="section-title">Project Overview</h2>
+        <div class="details-grid">
+            <div class="detail-card">
+                <h3><i class="fas fa-cogs"></i> Technologies Used</h3>
+                <ul>
+                    <li><strong>HTML5 Architecture:</strong> Structured input fields, key controls, and read-only output panels.</li>
+                    <li><strong>CSS3 Glassmorphic Styling:</strong> Card containers with dynamic hover micro-animations and responsive spacing.</li>
+                    <li><strong>Vanilla JavaScript (ES6):</strong> ASCII character-code math, string transformations, and state resets.</li>
+                    <li><strong>Modular Arithmetic:</strong> Formula: $E(x) = (x + k) \pmod{26}$, $D(x) = (x - k) \pmod{26}$.</li>
+                </ul>
+            </div>
+            <div class="detail-card">
+                <h3><i class="fas fa-lightbulb"></i> Problem Solved</h3>
+                <p>Learning classical cryptography is essential for understanding modern symmetric encryption foundations, cryptanalysis, and frequency analysis. This tool delivers a tactile, instant visualization of substitution shifts and ciphertext decryption.</p>
+            </div>
+            <div class="detail-card">
+                <h3><i class="fas fa-rocket"></i> Key Highlights</h3>
+                <ul>
+                    <li>Zero-dependency native client-side execution requiring no backend server.</li>
+                    <li>Automatic shift value sanitization restricting keys to $1 \le k \le 25$.</li>
+                    <li>Integrated clipboard copy with contextual feedback modal dialogs.</li>
+                    <li>One-click state clearing for fast multiple experiments and demos.</li>
+                </ul>
+            </div>
+            <div class="detail-card">
+                <h3><i class="fas fa-shield-alt"></i> Cryptographic Concepts</h3>
+                <ul>
+                    <li><strong>Monoalphabetic Substitution:</strong> Replacing each plaintext character with a character a fixed number of positions down the alphabet.</li>
+                    <li><strong>Keyspace Analysis:</strong> Demonstrates why a small keyspace (25 possible shifts) is vulnerable to brute-force frequency analysis.</li>
+                    <li><strong>Modular Inversion:</strong> Demonstrating how decryption is the inverse operation: $(26 - k) \pmod{26}$.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

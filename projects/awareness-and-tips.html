@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security Awareness & Tips - Project Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #22C55E;
+            --primary-dark: #16A34A;
+            --accent: #06B6D4;
+            --bg-color: #080810;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(34, 197, 94, 0.25);
+            --text-main: #F1F5F9;
+            --text-muted: #94A3B8;
+            --gradient: linear-gradient(135deg, #22C55E, #06B6D4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem 5%;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            gap: 3rem;
+        }
+
+        .content {
+            flex: 1 1 500px;
+            animation: fadeInLeft 1s ease;
+        }
+
+        .title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--accent) !important;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 650px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .image-container {
+            flex: 1 1 350px;
+            animation: fadeInRight 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-wrapper {
+            width: 100%;
+            max-width: 480px;
+            height: 380px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #050d0a, #0a1f14);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            transition: transform 0.5s ease;
+        }
+
+        .image-wrapper:hover {
+            transform: scale(1.02);
+            border-color: var(--primary);
+        }
+
+        .image-wrapper i {
+            font-size: 110px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .image-badge {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            color: #4ade80;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.4rem;
+            font-size: 13px;
+            background: var(--gradient);
+            color: #080810 !important;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+            color: #080810 !important;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+        }
+
+        .btn.primary {
+            background: var(--primary);
+            color: var(--bg-color);
+        }
+
+        .btn.primary:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 991px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .features {
+                text-align: left;
+            }
+            .title {
+                font-size: 2.8rem;
+            }
+        }
+
+        .details-section {
+            padding: 4rem 5%;
+            background-color: var(--bg-color);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            font-weight: 800;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .detail-card {
+            background: var(--glass-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .detail-card h3 {
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .detail-card h3 i {
+            color: var(--primary);
+        }
+
+        .detail-card p,
+        .detail-card ul {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .detail-card ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .detail-card ul li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .detail-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <div class="container">
+            <div class="content">
+                <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
+                <div class="subtitle">Cyber Awareness & Threat Prevention</div>
+                <h1 class="title">Cyber Security Awareness & Tips</h1>
+                <p class="description">
+                    An interactive educational cybersecurity platform engineered to build human firewall defenses. It features contextual threat breakdowns across 6 key digital hygiene vectors and an integrated dynamic Security Check scoring diagnostic.
+                </p>
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-shield-virus"></i>
+                        <h3>6 Threat Domains</h3>
+                        <p>In-depth safety guides for Passwords, Phishing, Browsing, Mobile, Devices, and Wi-Fi.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-clipboard-check"></i>
+                        <h3>Interactive Auditing</h3>
+                        <p>Dynamic 5-question evaluation calculating personalized security scores from 0 to 100%.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-gauge-high"></i>
+                        <h3>Posture Feedback</h3>
+                        <p>Color-coded risk classifications (Excellent to High Risk) with actionable remediation advice.</p>
+                    </div>
+                </div>
+                <div class="button-group" style="margin-top: 2rem;">
+                    <a href="https://awareness-and-tips.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn primary"
+                        style="padding: 1rem 2.5rem; box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);"><i
+                            class="fas fa-external-link-alt"></i> Visit Site</a>
+                    <a href="https://github.com/jesinmilesh/Awareness-and-Tips" target="_blank" rel="noopener noreferrer" class="btn"
+                        style="padding: 1rem 2.5rem;"><i class="fab fa-github"></i> View Repository</a>
+                </div>
+            </div>
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <i class="fas fa-user-shield"></i>
+                    <div class="image-badge">Interactive Security Coach</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="details-section">
+        <h2 class="section-title">Project Overview</h2>
+        <div class="details-grid">
+            <div class="detail-card">
+                <h3><i class="fas fa-cogs"></i> Technologies Used</h3>
+                <ul>
+                    <li><strong>HTML5 Semantic Elements:</strong> Accessible structure for modular training modules.</li>
+                    <li><strong>Modern CSS3:</strong> Glassmorphism styling, responsive flexbox/grid, and fluid micro-transitions.</li>
+                    <li><strong>Vanilla JavaScript (ES6+):</strong> Dynamic DOM rendering, state management, and real-time form validation.</li>
+                    <li><strong>Client-Side Engine:</strong> Zero-latency questionnaire evaluation running entirely in the browser.</li>
+                </ul>
+            </div>
+            <div class="detail-card">
+                <h3><i class="fas fa-lightbulb"></i> Problem Solved</h3>
+                <p>Human error is implicated in over 85% of cybersecurity breaches. Traditional security policies are often ignored due to dense, non-interactive formats. This tool delivers bite-sized, gamified cybersecurity hygiene training with immediate diagnostic self-checks.</p>
+            </div>
+            <div class="detail-card">
+                <h3><i class="fas fa-rocket"></i> Key Highlights</h3>
+                <ul>
+                    <li>Multi-topic selector with instant DOM switching for 6 fundamental security topics.</li>
+                    <li>Instant security score algorithm grading answers against recommended cyber best practices.</li>
+                    <li>Color-coded risk bands: 🟢 EXCELLENT (100%), 🟡 GOOD (80%), 🟠 NEEDS IMPROVEMENT (60%), and 🔴 HIGH RISK (&le;40%).</li>
+                    <li>Transparent diagnostic breakdown highlighting both secure habits and vulnerable practices.</li>
+                </ul>
+            </div>
+            <div class="detail-card">
+                <h3><i class="fas fa-network-wired"></i> Curriculum Vectors</h3>
+                <ul>
+                    <li><strong>Password Security:</strong> Entropy, passphrase uniqueness, MFA, and manager adoption.</li>
+                    <li><strong>Phishing Protection:</strong> Domain verification, pretexting traps, and malicious attachments.</li>
+                    <li><strong>Safe Browsing:</strong> HTTPS validation, certificate inspections, and suspicious downloads.</li>
+                    <li><strong>Mobile & Wi-Fi:</strong> Public hotspot encryption, rogue captive portals, and permission sandboxes.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
