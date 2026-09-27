@@ -117,6 +117,23 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
+// ── Certificate filter tabs ──
+document.querySelectorAll('.cert-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cert-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.getAttribute('data-filter');
+    document.querySelectorAll('.cert-card').forEach(card => {
+      const cat = card.getAttribute('data-cat') || '';
+      if (filter === 'all' || cat === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+
 // ── Toast notification ──
 function showToast(message, type = 'success') {
   const toast = document.getElementById('toast');
